@@ -12,8 +12,8 @@ export function deepThink(flana: any, dheenga: any): boolean {
         }
     } else if (typeof flana === 'object' && typeof dheenga === 'object') {
         // bcz javascript
-        if (flana === null) {
-            return dheenga === null;
+        if (flana === null || dheenga === null) {
+            return dheenga === null && flana === null;
         }
 
         // URLSearchParams
