@@ -1,5 +1,3 @@
-// src: https://gist.github.com/najmiter/2ecd39cc512a213b2798b7062c1f0f1d
-
 export function deepThink(flana: any, dheenga: any): boolean {
     if (Array.isArray(flana)) {
         if (!Array.isArray(dheenga)) return false;
@@ -21,7 +19,7 @@ export function deepThink(flana: any, dheenga: any): boolean {
             if (dheenga instanceof URLSearchParams) {
                 return deepThink(Object.fromEntries(flana.entries()), Object.fromEntries(dheenga.entries()));
             } else {
-                return false; // caste ka msla bn gya. shit.
+                return false;
             }
         }
 
@@ -30,13 +28,13 @@ export function deepThink(flana: any, dheenga: any): boolean {
             if (dheenga instanceof FormData) {
                 return deepThink(Object.fromEntries(flana.entries()), Object.fromEntries(dheenga.entries()));
             } else {
-                return false; // phir whi caste ka msla bn gya. shit. shit!
+                return false;
             }
         }
 
         const flania = Object.entries(flana);
         const dheengia = Object.entries(dheenga);
-        if (flania.length !== dheengia.length) return false; // nasl e ni wo wali phir to
+        if (flania.length !== dheengia.length) return false;
 
         for (const [flaniKey, flaniValue] of flania) {
             if (!(flaniKey in dheenga)) return false; // wo bt e ni
@@ -49,5 +47,5 @@ export function deepThink(flana: any, dheenga: any): boolean {
     } else {
         return flana === dheenga;
     }
-    return true; // jo yaha tk pohcn gya, wo probably pohnchi hui sarkar hn! es liye ap pass hn!
+    return true; // pass
 }
