@@ -14,21 +14,13 @@ export function deepThink(flana: any, dheenga: any): boolean {
             return dheenga === null && flana === null;
         }
 
-        // URLSearchParams
-        if (flana instanceof URLSearchParams) {
-            if (dheenga instanceof URLSearchParams) {
-                return deepThink(Object.fromEntries(flana.entries()), Object.fromEntries(dheenga.entries()));
-            } else {
-                return false;
-            }
-        }
-
-        // FormData - wesy ye b same e h to koi itna khas mza ni aya kr k pr chlo
-        if (flana instanceof FormData) {
-            if (dheenga instanceof FormData) {
-                return deepThink(Object.fromEntries(flana.entries()), Object.fromEntries(dheenga.entries()));
-            } else {
-                return false;
+        for (const Class of specialClasses) {
+            if (flana instanceof Class) {
+                if (dheenga instanceof Class) {
+                    return deepThink(Object.fromEntries(flana.entries()), Object.fromEntries(dheenga.entries()));
+                } else {
+                    return false;
+                }
             }
         }
 
@@ -49,3 +41,5 @@ export function deepThink(flana: any, dheenga: any): boolean {
     }
     return true; // pass
 }
+
+const specialClasses = [URLSearchParams, FormData, Map, Set];
